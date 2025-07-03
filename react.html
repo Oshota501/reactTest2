@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>アナログなReact</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+  <h2>アナログReactのデモ</h2>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    'use strict';
+
+
+    function LikeButton() {
+
+
+      const btnClickState = React.useState(0);
+      const style1 = {
+        background : "linear-gradient("+btnClickState[0]+"deg,red,yellow)" ,
+        color:"black",
+      }
+      return (
+        <div style={style1}>
+          <button onClick={() => btnClickState[1](btnClickState[0]+1)} className="app">
+            {btnClickState[0]}
+          </button>
+        </div>
+      );
+    }
+    
+    // React 18以降の推奨される書き方
+    const rootElement = document.getElementById('root');
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<LikeButton />);
+
+  </script>
+  <style>
+.app{
+  background-color: green;
+  color:yellow;
+  font-size: 40px;
+}
+.app:hover{
+  background-color: yellow;
+  color:green;
+  font-size: 40px;
+}
+  </style>
+</body>
+</html>
